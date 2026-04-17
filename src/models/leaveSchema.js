@@ -1,0 +1,32 @@
+import mongoose from 'mongoose';
+
+const leaveSchema = new mongoose.Schema(
+    {
+        user: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User",
+            required: true,
+        },
+        fromDate: {
+            type: Date,
+            required: true,
+        },
+        toDate: {
+            type: Date,
+            required: true,
+        },
+        reason: String,
+        status: {
+            type: String,
+            enum: ["pending","approved","rejected"],
+            default: "pending",
+        },
+        approvedBy: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User",
+        },
+    },
+    {timestamps: true}
+);
+
+export default mongoose.model("Leave", leaveSchema);
