@@ -16,6 +16,10 @@ const salarySchema = new mongoose.Schema(
             type: Number,
             default: 0,
         },
+        bonus: {
+             type: Number,
+             default: 0,
+        },
         finalSalary: Number,
     },
     {timestamps: true}
