@@ -8,8 +8,12 @@ const departmentSchema = new mongoose.Schema(
             unique: true,
         },
         description: String,
+        departmentHead: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User",
+        },
     },
-    {timestamps: true}
+    { timestamps: true }
 );
 
 export default mongoose.model("Department", departmentSchema);

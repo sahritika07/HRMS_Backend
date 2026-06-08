@@ -16,17 +16,29 @@ const leaveSchema = new mongoose.Schema(
             required: true,
         },
         reason: String,
+        leaveType: {
+            type: String,
+            enum: [
+                "casual",
+                "sick",
+                "earned"
+            ],
+            required: true,
+        },
         status: {
             type: String,
-            enum: ["pending","approved","rejected"],
+            enum: ["pending", "approved", "rejected"],
             default: "pending",
         },
         approvedBy: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "User",
         },
+        remarks: {
+  type: String,
+},
     },
-    {timestamps: true}
+    { timestamps: true }
 );
 
 export default mongoose.model("Leave", leaveSchema);

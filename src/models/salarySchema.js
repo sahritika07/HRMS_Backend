@@ -11,18 +11,68 @@ const salarySchema = new mongoose.Schema(
             type: String,
             required: true,
         },
-        baseSalary: Number,
+        month: {
+            type: Number,
+            required: true,
+        },
+
+        year: {
+            type: Number,
+            required: true,
+        },
+
+        totalWorkingDays: {
+            type: Number,
+            default: 0,
+        },
+
+        presentDays: {
+            type: Number,
+            default: 0,
+        },
+
+        leaveDays: {
+            type: Number,
+            default: 0,
+        },
+
+        absentDays: {
+            type: Number,
+            default: 0,
+        },
+
+        grossSalary: {
+            type: Number,
+            default: 0,
+        },
+
         deductions: {
             type: Number,
             default: 0,
         },
+
         bonus: {
-             type: Number,
-             default: 0,
+            type: Number,
+            default: 0,
         },
-        finalSalary: Number,
+
+        netSalary: {
+            type: Number,
+            default: 0,
+        },
     },
-    {timestamps: true}
+    { timestamps: true }
 )
+
+salarySchema.index(
+    {
+        user: 1,
+        month: 1,
+        year: 1,
+    },
+    {
+        unique: true,
+    }
+);
 
 export default mongoose.model("Salary", salarySchema);
